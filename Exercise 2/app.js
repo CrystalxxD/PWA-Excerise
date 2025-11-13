@@ -1,14 +1,18 @@
-let clicks = 0;
-const button = document.getElementById('clickMe');
+let clicks = localStorage.getItem("clicks")
+const buttonClick = document.getElementById('clickMe');
+const buttonReset = document.getElementById('Reset');
 const display = document.getElementById('clickCount');
 
-button.addEventListener('click', () => {
+display.textContent = `Clicks: ${clicks}`;
+
+buttonClick.addEventListener('click', () => {
     clicks++;
-    display.textContent = `Button clicks: ${clicks}`;
+    localStorage.setItem("clicks", clicks);
+    display.textContent = `Clicks: ${clicks}`;
 });
 
-const reset_button = document.getElementbyId('reset');
-reset_button.addEventListener('click', () => {
-    clicks++;
-    display.textContent = `Button clicks: 0`;
+buttonReset.addEventListener('click', () => {
+    clicks = 0;
+    localStorage.setItem("clicks", clicks);
+    display.textContent = `Clicks: 0`;
 });
